@@ -12,7 +12,7 @@ const orders: Order[] = [];
 
 export async function POST(req: Request) {
   try {
-    const { color, shape, size, flavor, decoration } = await req.json();
+    const { color, shape, size, flavor, decoration }: Order = await req.json();
 
     if (!color || !shape || !size || !flavor || !decoration) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
