@@ -1,4 +1,5 @@
-'use client';
+"use client";  // ✅ Fix: Convert this to a client component
+
 import { useSearchParams } from 'next/navigation';
 import { Container, Typography, Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
