@@ -1,9 +1,7 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Mesh } from 'three';
-import { useRouter } from 'next/navigation';
-import { Container, Typography, Button } from '@mui/material';
-import { useSearchParams } from 'next/navigation';
+
 
 type Props = {
   color: string;
