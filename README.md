@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍰 Cake Customizer App
 
-## Getting Started
+## 🚀 Project Overview
 
-First, run the development server:
+The **Cake Customizer App** is an interactive web application that allows users to design their own cakes by selecting **color, shape, size, flavor, and decorations**. Once the customization is complete, users can view a summary of their order and choose to customize again.
 
-```bash
+## 🎨 Features
+
+- **3D Cake Model:** Built using Three.js and react-three-fiber.
+- **Customization Options:**
+  - Select color
+  - Choose between different shapes (Cylinder, Cube, Sphere)
+  - Adjust cake size (Small, Medium, Big, XL)
+  - Pick a flavor (Vanilla, Chocolate, Strawberry)
+  - Add decorations (None, Sprinkles, Fruit)
+- **Live Preview:** Changes are reflected in real-time.
+- **Order Summary Page:** Displays selected cake features.
+- **Navigation:** Users can return to the customization page.
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js (App Router)
+- **Styling:** Material-UI (MUI)
+- **3D Rendering:** Three.js (`@react-three/fiber`, `@react-three/drei`)
+- **State Management:** React Hooks
+
+## 🔧 Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+git clone https://github.com/your-username/cake-customizer.git
+cd cake-customizer
+
+### 2️⃣ Install Dependencies
+
+npm install
+
+### 3️⃣ Run the Development Server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The app can be deployed easily using **Vercel**:
 
-## Learn More
+1. Push the project to a GitHub repository.
+2. Go to [vercel.com](https://vercel.com/), import the repo, and deploy.
 
-To learn more about Next.js, take a look at the following resources:
+## 📌 Future Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Save orders to a backend (e.g., Firebase, MongoDB, or Supabase)
+- Add user authentication
+- More decoration options
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💡 Contributing
 
-## Deploy on Vercel
+If you'd like to contribute:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork the repository
+2. Create a new branch
+3. Make your changes
+4. Open a Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
