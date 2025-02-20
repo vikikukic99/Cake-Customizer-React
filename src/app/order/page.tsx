@@ -22,11 +22,11 @@ function OrderPage() {
       <Typography variant="h4" gutterBottom>
         Your Cake Order
       </Typography>
-      <Typography variant="h6">Color: {searchParams.get('color')}</Typography>
-      <Typography variant="h6">Shape: {searchParams.get('shape')}</Typography>
-      <Typography variant="h6">Size: {searchParams.get('size')}</Typography>
-      <Typography variant="h6">Flavor: {searchParams.get('flavor')}</Typography>
-      <Typography variant="h6">Decoration: {searchParams.get('decoration')}</Typography>
+      <Typography variant="h6">Color: {searchParams.get('color') ?? 'Not selected'}</Typography>
+      <Typography variant="h6">Shape: {searchParams.get('shape') ?? 'Not selected'}</Typography>
+      <Typography variant="h6">Size: {searchParams.get('size') ?? 'Not selected'}</Typography>
+      <Typography variant="h6">Flavor: {searchParams.get('flavor') ?? 'Not selected'}</Typography>
+      <Typography variant="h6">Decoration: {searchParams.get('decoration') ?? 'Not selected'}</Typography>
       <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={() => router.push('/customize')}>
         Customize Again
       </Button>
