@@ -1,28 +1,32 @@
 import { NextResponse } from 'next/server';
 
-interface Order {
-  color: string;
-  shape: string;
-  size: string;
-  flavor: string;
-  decoration: string;
+// Assuming this API handles orders
+export async function GET() {
+  try {
+    const orders = [
+      { id: 1, name: 'Chocolate Cake', size: 'Medium', decoration: 'Sprinkles' },
+      { id: 2, name: 'Vanilla Cake', size: 'Large', decoration: 'Fruits' },
+    ];
+    
+    return NextResponse.json({ success: true, orders });
+  } catch (err) {  // Change 'error' to 'err' if unused
+    console.error('Error fetching orders:', err);
+    return NextResponse.json({ success: false, message: 'Failed to fetch orders' }, { status: 500 });
+  }
 }
-
-const orders: Order[] = [];
 
 export async function POST(req: Request) {
   try {
-    const { color, shape, size, flavor, decoration }: Order = await req.json();
-
-    if (!color || !shape || !size || !flavor || !decoration) {
-      return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
+    const body = await req.json();
+    
+    // Example validation (optional)
+    if (!body.name || !body.size) {
+      return NextResponse.json({ success: false, message: 'Invalid order data' }, { status: 400 });
     }
 
-    const newOrder: Order = { color, shape, size, flavor, decoration };
-    orders.push(newOrder);
-
-    return NextResponse.json({ message: 'Order placed', order: newOrder });
-  } catch (error) {
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ success: true, message: 'Order created successfully', order: body });
+  } catch (err) {
+    console.error('Error creating order:', err);
+    return NextResponse.json({ success: false, message: 'Failed to create order' }, { status: 500 });
   }
 }
