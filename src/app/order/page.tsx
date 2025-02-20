@@ -12,7 +12,7 @@ export default function Order() {
 
   useEffect(() => {
     async function fetchOrder() {
-      const res = await fetch("/api/order");
+      const res = await fetch("/api/orders"); 
       const data = await res.json();
       setOrder(data.length > 0 ? data[data.length - 1] : null);
     }

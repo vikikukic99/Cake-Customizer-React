@@ -1,4 +1,3 @@
-// src/app/api/order/route.ts
 import { NextResponse } from "next/server";
 
 // Mock database (temporary storage)
