@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Container, Typography, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 
-export default function Order() {
+function OrderContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -42,5 +42,13 @@ export default function Order() {
         Customize Again
       </Button>
     </Container>
+  );
+}
+
+export default function Order() {
+  return (
+    <Suspense fallback={<Typography>Loading...</Typography>}>
+      <OrderContent />
+    </Suspense>
   );
 }
