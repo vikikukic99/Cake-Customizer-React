@@ -3,17 +3,8 @@
 import { useSearchParams } from 'next/navigation';
 import { Container, Typography, Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import { Suspense } from 'react';
 
-export default function Order() {
-  return (
-    <Suspense fallback={<p>Loading order details...</p>}>
-      <OrderPage />
-    </Suspense>
-  );
-}
-
-function OrderPage() {
+export default function OrderPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
