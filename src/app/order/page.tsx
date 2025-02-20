@@ -5,28 +5,21 @@ import { useSearchParams } from "next/navigation";
 import { Container, Typography, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 
-function OrderContent() {
-  const searchParams = useSearchParams();
+export default function Order() {
   const router = useRouter();
-
-  // Store the params in state (Prevents pre-rendering issue)
-  const [order, setOrder] = useState({
-    color: "",
-    shape: "",
-    size: "",
-    flavor: "",
-    decoration: "",
-  });
+  const searchParams = useSearchParams();
+  const [order, setOrder] = useState<any>(null);
 
   useEffect(() => {
-    setOrder({
-      color: searchParams.get("color") || "",
-      shape: searchParams.get("shape") || "",
-      size: searchParams.get("size") || "",
-      flavor: searchParams.get("flavor") || "",
-      decoration: searchParams.get("decoration") || "",
-    });
-  }, [searchParams]);
+    async function fetchOrder() {
+      const res = await fetch("/api/order");
+      const data = await res.json();
+      setOrder(data.length > 0 ? data[data.length - 1] : null);
+    }
+    fetchOrder();
+  }, []);
+
+  if (!order) return <Typography>Loading your order...</Typography>;
 
   return (
     <Container maxWidth="md" sx={{ textAlign: "center", mt: 5 }}>
@@ -42,13 +35,5 @@ function OrderContent() {
         Customize Again
       </Button>
     </Container>
-  );
-}
-
-export default function Order() {
-  return (
-    <Suspense fallback={<Typography>Loading...</Typography>}>
-      <OrderContent />
-    </Suspense>
   );
 }
