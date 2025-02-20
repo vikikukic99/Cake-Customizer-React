@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Mesh } from 'three';
+import * as THREE from 'three';
 
 
 type Props = {
@@ -15,22 +16,22 @@ export default function CakeModel({ color, shape, size, decoration }: Props) {
   useFrame(() => ref.current && (ref.current.rotation.y += 0.01));
   
   let scale;
-  switch (size) {
-    case 'small':
-      scale = [0.7, 0.7, 0.7];
-      break;
-    case 'medium':
-      scale = [1, 1, 1];
-      break;
-    case 'big':
-      scale = [1.3, 1.3, 1.3];
-      break;
-    case 'xl':
-      scale = [1.6, 1.6, 1.6];
-      break;
-    default:
-      scale = [1, 1, 1];
-  }
+switch (size) {
+  case 'small':
+    scale = new THREE.Vector3(0.7, 0.7, 0.7);
+    break;
+  case 'medium':
+    scale = new THREE.Vector3(1, 1, 1);
+    break;
+  case 'big':
+    scale = new THREE.Vector3(1.3, 1.3, 1.3);
+    break;
+  case 'xl':
+    scale = new THREE.Vector3(1.6, 1.6, 1.6);
+    break;
+  default:
+    scale = new THREE.Vector3(1, 1, 1);
+}
   
   let geometry;
   if (shape === 'cube') {
