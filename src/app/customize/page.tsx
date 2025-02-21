@@ -1,33 +1,32 @@
-'use client';
+"use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Container, Button, Typography, MenuItem, Select } from "@mui/material";
+import { Container, Typography, Button, MenuItem, Select } from "@mui/material";
 import { SketchPicker } from "react-color";
-import CakeModel from "../../components/CakeModel";
-
-const shapes = ["Round", "Square", "Heart"];
-const sizes = ["Small", "Medium", "Large"];
-const flavors = ["Vanilla", "Chocolate", "Strawberry"];
-const decorations = ["None", "Candles", "Sprinkles", "Chocolate Drizzle", "Fruits"];
+import CakeModel from "@/components/CakeModel";
 
 type CakeProps = {
   color: string;
   shape: string;
-  size: string;
-  flavor: string;
-  decoration: string;
 };
+
+const shapes = ["Round", "Square", "Heart"];
 
 export default function CustomizePage() {
   const router = useRouter();
   const [cake, setCake] = useState<CakeProps>({
     color: "#FFD700",
     shape: "Round",
-    size: "Medium",
-    flavor: "Vanilla",
-    decoration: "None",
   });
+
+  const handleChangeColor = (color: any) => {
+    setCake((prevCake) => ({ ...prevCake, color: color.hex }));
+  };
+
+  const handleChangeShape = (event: any) => {
+    setCake((prevCake) => ({ ...prevCake, shape: event.target.value }));
+  };
 
   const handleSubmit = () => {
     sessionStorage.setItem("cake", JSON.stringify(cake));
@@ -35,37 +34,26 @@ export default function CustomizePage() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ textAlign: "center", mt: 5 }}>
-      <Typography variant="h4">Customize Your Cake</Typography>
-      <CakeModel color={cake.color} shape={cake.shape} decoration={cake.decoration} />
-      <Typography>Select Cake Color:</Typography>
-      <SketchPicker color={cake.color} onChange={(c) => setCake({ ...cake, color: c.hex })} />
-      <Typography>Select Shape:</Typography>
-      <Select value={cake.shape} onChange={(e) => setCake({ ...cake, shape: e.target.value })} fullWidth>
+    <Container maxWidth="sm">
+      <Typography variant="h4" textAlign="center" mt={5}>
+        Customize Your Cake
+      </Typography>
+      <CakeModel color={cake.color} shape={cake.shape} />
+
+      <Typography mt={3}>Select Cake Color:</Typography>
+      <SketchPicker color={cake.color} onChange={handleChangeColor} />
+
+      <Typography mt={3}>Select Shape:</Typography>
+      <Select value={cake.shape} onChange={handleChangeShape} fullWidth>
         {shapes.map((shape) => (
-          <MenuItem key={shape} value={shape}>{shape}</MenuItem>
+          <MenuItem key={shape} value={shape}>
+            {shape}
+          </MenuItem>
         ))}
       </Select>
-      <Typography>Select Size:</Typography>
-      <Select value={cake.size} onChange={(e) => setCake({ ...cake, size: e.target.value })} fullWidth>
-        {sizes.map((size) => (
-          <MenuItem key={size} value={size}>{size}</MenuItem>
-        ))}
-      </Select>
-      <Typography>Select Flavor:</Typography>
-      <Select value={cake.flavor} onChange={(e) => setCake({ ...cake, flavor: e.target.value })} fullWidth>
-        {flavors.map((flavor) => (
-          <MenuItem key={flavor} value={flavor}>{flavor}</MenuItem>
-        ))}
-      </Select>
-      <Typography>Select Decoration:</Typography>
-      <Select value={cake.decoration} onChange={(e) => setCake({ ...cake, decoration: e.target.value })} fullWidth>
-        {decorations.map((decoration) => (
-          <MenuItem key={decoration} value={decoration}>{decoration}</MenuItem>
-        ))}
-      </Select>
-      <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={handleSubmit}>
-        PROCEED TO ORDER
+
+      <Button variant="contained" color="primary" onClick={handleSubmit} fullWidth sx={{ mt: 3 }}>
+        Proceed to Order
       </Button>
     </Container>
   );
