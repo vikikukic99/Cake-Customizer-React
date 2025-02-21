@@ -30,7 +30,9 @@ export default function CustomizePage() {
   });
 
   const handleSubmit = () => {
-    router.push("/order", { scroll: false, state: cake });
+    router.push("/order");
+sessionStorage.setItem("cake", JSON.stringify(cake));
+
   };
 
   return (

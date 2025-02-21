@@ -8,7 +8,6 @@ import HeartCake from "@/components/models/HeartCake";
 
 interface CakeProps {
   color?: string;
-  shape: string;
   decoration?: string;
 }
 

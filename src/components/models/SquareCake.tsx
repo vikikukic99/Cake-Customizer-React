@@ -1,11 +1,12 @@
 "use client";
 
-import { MeshStandardMaterial } from "@react-three/drei";
+import { MeshPhysicalMaterial } from "@react-three/drei";
 import { useRef } from "react";
 import { Mesh } from "three";
 
 interface SquareCakeProps {
   color?: string;
+  decoration?: string;
 }
 
 export default function SquareCake({ color = "#FFD700" }: SquareCakeProps) {
@@ -14,7 +15,7 @@ export default function SquareCake({ color = "#FFD700" }: SquareCakeProps) {
   return (
     <mesh ref={cakeRef}>
       <boxGeometry args={[1, 1, 0.5]} />
-      <MeshStandardMaterial color={color} />
+      <MeshPhysicalMaterial color={color} />
     </mesh>
   );
 }
