@@ -6,10 +6,9 @@ import { Mesh } from "three";
 
 interface SquareCakeProps {
   color?: string;
-  decoration?: string;
 }
 
-export default function SquareCake({ color = "#FFD700", decoration }: SquareCakeProps) {
+export default function SquareCake({ color = "#FFD700" }: SquareCakeProps) {
   const cakeRef = useRef<Mesh>(null);
 
   return (

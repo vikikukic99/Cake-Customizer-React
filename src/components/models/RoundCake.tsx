@@ -6,10 +6,9 @@ import { Mesh } from "three";
 
 interface RoundCakeProps {
   color?: string;
-  decoration?: string;
 }
 
-export default function RoundCake({ color = "#FFD700", decoration }: RoundCakeProps) {
+export default function RoundCake({ color = "#FFD700" }: RoundCakeProps) {
   const cakeRef = useRef<Mesh>(null);
 
   return (

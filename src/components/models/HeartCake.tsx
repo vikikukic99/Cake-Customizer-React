@@ -6,10 +6,9 @@ import { Mesh } from "three";
 
 interface HeartCakeProps {
   color?: string;
-  decoration?: string;
 }
 
-export default function HeartCake({ color = "#FFD700", decoration }: HeartCakeProps) {
+export default function HeartCake({ color = "#FFD700" }: HeartCakeProps) {
   const cakeRef = useRef<Mesh>(null);
 
   return (
