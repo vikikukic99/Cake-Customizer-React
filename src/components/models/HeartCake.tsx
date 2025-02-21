@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Shape, ExtrudeGeometry, MeshStandardMaterial } from "three";
+import { Shape } from "three";
 
 export default function HeartCake({ color }) {
   const cakeRef = useRef();

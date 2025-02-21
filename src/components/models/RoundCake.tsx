@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { MeshStandardMaterial } from "three";
 
 export default function RoundCake({ color }) {
   const cakeRef = useRef();

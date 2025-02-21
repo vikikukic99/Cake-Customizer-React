@@ -1,6 +1,6 @@
 "use client";
 import { Canvas } from "@react-three/fiber";
-import { MeshStandardMaterial, Sphere, Cylinder, Torus, Box } from "@react-three/drei";
+import {  Sphere, Cylinder, Torus, Box } from "@react-three/drei";
 
 export default function CakeModel({ color, shape, decoration }) {
     const renderShape = () => {
