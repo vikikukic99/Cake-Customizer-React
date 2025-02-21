@@ -5,10 +5,9 @@ import { Sphere, Cylinder, Torus } from "@react-three/drei";
 type CakeProps = {
   color: string;
   shape: string;
-  decoration: string;
 };
 
-const CakeModel: React.FC<CakeProps> = ({ color, shape, decoration }) => {
+const CakeModel: React.FC<CakeProps> = ({ color, shape }) => {
   const renderCakeShape = () => {
     switch (shape) {
       case "Heart":
