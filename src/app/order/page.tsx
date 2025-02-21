@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
@@ -8,12 +8,12 @@ import { useRouter } from "next/navigation";
 export default function OrderPage() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
-      <OrderComponent />
+      <OrderDetails />
     </Suspense>
   );
 }
 
-function OrderComponent() {
+function OrderDetails() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
