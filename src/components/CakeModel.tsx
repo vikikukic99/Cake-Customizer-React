@@ -2,12 +2,13 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Sphere, Cylinder, Torus } from "@react-three/drei";
 
-type CakeProps = {
+interface CakeProps {
   color: string;
   shape: string;
-};
+  decoration?: string; // Make decoration optional if not always used
+}
 
-const CakeModel: React.FC<CakeProps> = ({ color, shape }) => {
+const CakeModel: React.FC<CakeProps> = ({ color, shape, decoration }) => {
   const renderCakeShape = () => {
     switch (shape) {
       case "Heart":

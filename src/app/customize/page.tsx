@@ -10,7 +10,7 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { SketchPicker } from "react-color";
+import { SketchPicker, ColorResult } from "react-color";
 import CakeModel from "@/components/CakeModel";
 
 const shapes = ["Round", "Square", "Heart"];
@@ -18,9 +18,17 @@ const sizes = ["Small", "Medium", "Large"];
 const flavors = ["Vanilla", "Chocolate", "Strawberry"];
 const decorations = ["Sprinkles", "Chocolate Drizzle", "Fruits"];
 
+interface CakeProps {
+  color: string;
+  shape: string;
+  size: string;
+  flavor: string;
+  decoration: string;
+}
+
 export default function CustomizePage() {
   const router = useRouter();
-  const [cake, setCake] = useState({
+  const [cake, setCake] = useState<CakeProps>({
     color: "#FFD700",
     shape: "Round",
     size: "Medium",
@@ -28,29 +36,17 @@ export default function CustomizePage() {
     decoration: "None",
   });
 
-  const handleColorChange = (color: any) => {
+  const handleColorChange = (color: ColorResult) => {
     setCake((prevCake) => ({ ...prevCake, color: color.hex }));
   };
 
-  const handleChangeShape = (event: SelectChangeEvent<string>) => {
-    setCake((prevCake) => ({ ...prevCake, shape: event.target.value }));
-  };
-
-  const handleChangeSize = (event: SelectChangeEvent<string>) => {
-    setCake((prevCake) => ({ ...prevCake, size: event.target.value }));
-  };
-
-  const handleChangeFlavor = (event: SelectChangeEvent<string>) => {
-    setCake((prevCake) => ({ ...prevCake, flavor: event.target.value }));
-  };
-
-  const handleChangeDecoration = (event: SelectChangeEvent<string>) => {
-    setCake((prevCake) => ({ ...prevCake, decoration: event.target.value }));
+  const handleChange = (event: SelectChangeEvent<string>, field: keyof CakeProps) => {
+    setCake((prevCake) => ({ ...prevCake, [field]: event.target.value }));
   };
 
   const handleSubmit = () => {
-    router.push("/order");
     sessionStorage.setItem("cake", JSON.stringify(cake));
+    router.push("/order");
   };
 
   return (
@@ -59,11 +55,12 @@ export default function CustomizePage() {
         Customize Your Cake
       </Typography>
       <CakeModel color={cake.color} shape={cake.shape} decoration={cake.decoration} />
+
       <Typography mt={3}>Select Cake Color:</Typography>
       <SketchPicker color={cake.color} onChange={handleColorChange} />
 
       <Typography mt={3}>Select Shape:</Typography>
-      <Select value={cake.shape} onChange={handleChangeShape} fullWidth>
+      <Select value={cake.shape} onChange={(e) => handleChange(e, "shape")} fullWidth>
         {shapes.map((shape) => (
           <MenuItem key={shape} value={shape}>
             {shape}
@@ -72,7 +69,7 @@ export default function CustomizePage() {
       </Select>
 
       <Typography mt={3}>Select Size:</Typography>
-      <Select value={cake.size} onChange={handleChangeSize} fullWidth>
+      <Select value={cake.size} onChange={(e) => handleChange(e, "size")} fullWidth>
         {sizes.map((size) => (
           <MenuItem key={size} value={size}>
             {size}
@@ -81,7 +78,7 @@ export default function CustomizePage() {
       </Select>
 
       <Typography mt={3}>Select Flavor:</Typography>
-      <Select value={cake.flavor} onChange={handleChangeFlavor} fullWidth>
+      <Select value={cake.flavor} onChange={(e) => handleChange(e, "flavor")} fullWidth>
         {flavors.map((flavor) => (
           <MenuItem key={flavor} value={flavor}>
             {flavor}
@@ -90,7 +87,7 @@ export default function CustomizePage() {
       </Select>
 
       <Typography mt={3}>Select Decoration:</Typography>
-      <Select value={cake.decoration} onChange={handleChangeDecoration} fullWidth>
+      <Select value={cake.decoration} onChange={(e) => handleChange(e, "decoration")} fullWidth>
         {decorations.map((decoration) => (
           <MenuItem key={decoration} value={decoration}>
             {decoration}
