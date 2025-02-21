@@ -1,40 +1,34 @@
-"use client"; 
-
-import { Suspense } from "react";
+"use client";
 import { useSearchParams } from "next/navigation";
-import { Container, Typography, Button } from "@mui/material";
-import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const CakeModel = dynamic(() => import("@/components/CakeModel"), { ssr: false });
 
 export default function OrderPage() {
-  return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <OrderDetails />
-    </Suspense>
-  );
-}
+    const searchParams = useSearchParams();
 
-function OrderDetails() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+    const cake = {
+        color: searchParams.get("color") || "#FFD700",
+        shape: searchParams.get("shape") || "Round",
+        size: searchParams.get("size") || "Medium",
+        flavor: searchParams.get("flavor") || "Vanilla",
+        decoration: searchParams.get("decoration") || "None",
+    };
 
-  return (
-    <Container maxWidth="md" sx={{ textAlign: "center", mt: 5 }}>
-      <Typography variant="h4" gutterBottom>
-        Your Cake Order
-      </Typography>
-      <Typography variant="h6">Color: {searchParams.get("color")}</Typography>
-      <Typography variant="h6">Shape: {searchParams.get("shape")}</Typography>
-      <Typography variant="h6">Size: {searchParams.get("size")}</Typography>
-      <Typography variant="h6">Flavor: {searchParams.get("flavor")}</Typography>
-      <Typography variant="h6">Decoration: {searchParams.get("decoration")}</Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ mt: 3 }}
-        onClick={() => router.push("/customize")}
-      >
-        Customize Again
-      </Button>
-    </Container>
-  );
+    return (
+        <div style={{ textAlign: "center" }}>
+            <h2>Your Cake Order</h2>
+
+            {/* 3D Cake Model */}
+            <CakeModel color={cake.color} shape={cake.shape} decoration={cake.decoration} />
+
+            <p>Color: {cake.color}</p>
+            <p>Shape: {cake.shape}</p>
+            <p>Size: {cake.size}</p>
+            <p>Flavor: {cake.flavor}</p>
+            <p>Decoration: {cake.decoration}</p>
+            
+            <button onClick={() => window.history.back()}>Customize Again</button>
+        </div>
+    );
 }
