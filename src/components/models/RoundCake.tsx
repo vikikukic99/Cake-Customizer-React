@@ -1,11 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Sphere } from "@react-three/drei";
 
-interface RoundCakeProps {
-  color: string;
-}
-
-export default function RoundCake({ color }: RoundCakeProps) {
+export default function RoundCake() {
   return (
     <Canvas>
       <ambientLight />

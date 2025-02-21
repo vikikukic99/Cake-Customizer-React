@@ -3,11 +3,10 @@ import { Torus } from "@react-three/drei";
 import { MutableRefObject } from "react";
 
 interface HeartCakeProps {
-  color: string;
   cakeRef: MutableRefObject<HTMLDivElement | null>;
 }
 
-export default function HeartCake({ color, cakeRef }: HeartCakeProps) {
+export default function HeartCake({ cakeRef }: HeartCakeProps) {
   return (
     <div ref={cakeRef}>
       <Canvas>
