@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 
-// Assuming this API handles orders
 export async function GET() {
   try {
     const orders = [
@@ -9,7 +8,7 @@ export async function GET() {
     ];
     
     return NextResponse.json({ success: true, orders });
-  } catch (err) {  // Change 'error' to 'err' if unused
+  } catch (err) {  
     console.error('Error fetching orders:', err);
     return NextResponse.json({ success: false, message: 'Failed to fetch orders' }, { status: 500 });
   }
@@ -19,7 +18,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     
-    // Example validation (optional)
+    
     if (!body.name || !body.size) {
       return NextResponse.json({ success: false, message: 'Invalid order data' }, { status: 400 });
     }

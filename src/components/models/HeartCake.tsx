@@ -1,6 +1,5 @@
 "use client";
 
-// import { MeshStandardMaterial } from "three";
 import { useRef } from "react";
 import { Mesh } from "three";
 
