@@ -1,18 +1,34 @@
+"use client";
+
 import { Canvas } from "@react-three/fiber";
-import { Sphere, Cylinder, Torus } from "@react-three/drei";
+import { useMemo } from "react";
+import RoundCake from "@/components/models/RoundCake";
+import SquareCake from "@/components/models/SquareCake";
+import HeartCake from "@/components/models/HeartCake";
 
 interface CakeProps {
+  color?: string;
   shape: string;
+  decoration?: string;
 }
 
-export default function CakeModel({ shape }: CakeProps) {
+export default function CakeModel({ color = "#FFD700", shape, decoration }: CakeProps) {
+  const CakeComponent = useMemo(() => {
+    switch (shape) {
+      case "Square":
+        return SquareCake;
+      case "Heart":
+        return HeartCake;
+      default:
+        return RoundCake;
+    }
+  }, [shape]);
+
   return (
-    <Canvas>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      {shape === "Round" && <Sphere args={[1, 32, 32]} position={[0, 0, 0]} />}
-      {shape === "Square" && <Cylinder args={[1, 1, 1, 4]} position={[0, 0, 0]} />}
-      {shape === "Heart" && <Torus args={[0.5, 0.2, 16, 100]} position={[0, 0, 0]} />}
+    <Canvas style={{ height: "200px" }}>
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[0, 2, 5]} intensity={1} />
+      <CakeComponent color={color} decoration={decoration} />
     </Canvas>
   );
 }

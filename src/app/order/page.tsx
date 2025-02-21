@@ -1,34 +1,40 @@
 "use client";
-import { useSearchParams } from "next/navigation";
-import dynamic from "next/dynamic";
 
-const CakeModel = dynamic(() => import("@/components/CakeModel"), { ssr: false });
+import { useRouter } from "next/navigation";
+import { Container, Button, Typography } from "@mui/material";
+import CakeModel from "@/components/CakeModel";
+
+interface CakeState {
+  color: string;
+  shape: string;
+  size: string;
+  flavor: string;
+  decoration: string;
+}
 
 export default function OrderPage() {
-    const searchParams = useSearchParams();
+  const router = useRouter();
+  const cake = history.state?.state as CakeState || {
+    color: "#FFD700",
+    shape: "Round",
+    size: "Medium",
+    flavor: "Vanilla",
+    decoration: "None",
+  };
 
-    const cake = {
-        color: searchParams.get("color") || "#FFD700",
-        shape: searchParams.get("shape") || "Round",
-        size: searchParams.get("size") || "Medium",
-        flavor: searchParams.get("flavor") || "Vanilla",
-        decoration: searchParams.get("decoration") || "None",
-    };
+  return (
+    <Container maxWidth="sm" sx={{ textAlign: "center", mt: 5 }}>
+      <Typography variant="h4">Your Cake Order</Typography>
+      <CakeModel color={cake.color} shape={cake.shape} decoration={cake.decoration} />
+      <Typography>Color: {cake.color}</Typography>
+      <Typography>Shape: {cake.shape}</Typography>
+      <Typography>Size: {cake.size}</Typography>
+      <Typography>Flavor: {cake.flavor}</Typography>
+      <Typography>Decoration: {cake.decoration}</Typography>
 
-    return (
-        <div style={{ textAlign: "center" }}>
-            <h2>Your Cake Order</h2>
-
-            {/* 3D Cake Model */}
-            <CakeModel color={cake.color} shape={cake.shape} decoration={cake.decoration} />
-
-            <p>Color: {cake.color}</p>
-            <p>Shape: {cake.shape}</p>
-            <p>Size: {cake.size}</p>
-            <p>Flavor: {cake.flavor}</p>
-            <p>Decoration: {cake.decoration}</p>
-            
-            <button onClick={() => window.history.back()}>Customize Again</button>
-        </div>
-    );
+      <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={() => router.push("/customize")}>
+        Customize Again
+      </Button>
+    </Container>
+  );
 }

@@ -1,17 +1,21 @@
+"use client";
+
+import { MeshStandardMaterial } from "@react-three/drei";
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { Mesh } from "three";
 
-export default function SquareCake({ color }) {
-  const cakeRef = useRef();
+interface SquareCakeProps {
+  color?: string;
+  decoration?: string;
+}
 
-  useFrame(() => {
-    cakeRef.current.rotation.y += 0.005;
-  });
+export default function SquareCake({ color = "#FFD700", decoration }: SquareCakeProps) {
+  const cakeRef = useRef<Mesh>(null);
 
   return (
-    <mesh ref={cakeRef} position={[0, 0, 0]}>
-      <boxGeometry args={[2, 1, 2]} />
-      <meshStandardMaterial color={color} />
+    <mesh ref={cakeRef}>
+      <boxGeometry args={[1, 1, 0.5]} />
+      <MeshStandardMaterial color={color} />
     </mesh>
   );
 }
