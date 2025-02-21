@@ -1,27 +1,18 @@
-import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
-import { Shape } from "three";
+import { Canvas } from "@react-three/fiber";
+import { Torus } from "@react-three/drei";
+import { MutableRefObject } from "react";
 
-export default function HeartCake({ color }) {
-  const cakeRef = useRef();
+interface HeartCakeProps {
+  color: string;
+  cakeRef: MutableRefObject<HTMLDivElement | null>;
+}
 
-  useFrame(() => {
-    cakeRef.current.rotation.y += 0.005;
-  });
-
-  const heartShape = new Shape();
-  heartShape.moveTo(0, 0.4);
-  heartShape.bezierCurveTo(0, 0.6, -0.4, 0.8, -0.8, 0.4);
-  heartShape.bezierCurveTo(-1.2, 0, -0.8, -0.8, 0, -1);
-  heartShape.bezierCurveTo(0.8, -0.8, 1.2, 0, 0.8, 0.4);
-  heartShape.bezierCurveTo(0.4, 0.8, 0, 0.6, 0, 0.4);
-
-  const extrudeSettings = { depth: 0.5, bevelEnabled: false };
-
+export default function HeartCake({ color, cakeRef }: HeartCakeProps) {
   return (
-    <mesh ref={cakeRef} position={[0, 0, 0]}>
-      <extrudeGeometry args={[heartShape, extrudeSettings]} />
-      <meshStandardMaterial color={color} />
-    </mesh>
+    <Canvas>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <Torus args={[0.5, 0.2, 16, 100]} position={[0, 0, 0]} />
+    </Canvas>
   );
 }

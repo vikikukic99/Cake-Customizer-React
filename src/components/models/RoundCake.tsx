@@ -1,17 +1,16 @@
-import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
+import { Sphere } from "@react-three/drei";
 
-export default function RoundCake({ color }) {
-  const cakeRef = useRef();
+interface RoundCakeProps {
+  color: string;
+}
 
-  useFrame(() => {
-    cakeRef.current.rotation.y += 0.005; // Slight rotation
-  });
-
+export default function RoundCake({ color }: RoundCakeProps) {
   return (
-    <mesh ref={cakeRef} position={[0, 0, 0]}>
-      <cylinderGeometry args={[1.5, 1.5, 1, 32]} />
-      <meshStandardMaterial color={color} />
-    </mesh>
+    <Canvas>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <Sphere args={[1, 32, 32]} position={[0, 0, 0]} />
+    </Canvas>
   );
 }
