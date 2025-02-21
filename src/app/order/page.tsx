@@ -1,28 +1,37 @@
-'use client';
+"use client";
 
-import { useSearchParams } from 'next/navigation';
-import { Container, Typography, Button } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import { Container, Typography, Button } from "@mui/material";
+import { useRouter } from "next/navigation";
 
-export default function Order() {
+export default function OrderPage() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <OrderComponent />
+    </Suspense>
+  );
+}
+
+function OrderComponent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   return (
-    <Container maxWidth="md" sx={{ textAlign: 'center', mt: 5 }}>
+    <Container maxWidth="md" sx={{ textAlign: "center", mt: 5 }}>
       <Typography variant="h4" gutterBottom>
         Your Cake Order
       </Typography>
-      <Typography variant="h6">Color: {searchParams.get('color')}</Typography>
-      <Typography variant="h6">Shape: {searchParams.get('shape')}</Typography>
-      <Typography variant="h6">Size: {searchParams.get('size')}</Typography>
-      <Typography variant="h6">Flavor: {searchParams.get('flavor')}</Typography>
-      <Typography variant="h6">Decoration: {searchParams.get('decoration')}</Typography>
+      <Typography variant="h6">Color: {searchParams.get("color")}</Typography>
+      <Typography variant="h6">Shape: {searchParams.get("shape")}</Typography>
+      <Typography variant="h6">Size: {searchParams.get("size")}</Typography>
+      <Typography variant="h6">Flavor: {searchParams.get("flavor")}</Typography>
+      <Typography variant="h6">Decoration: {searchParams.get("decoration")}</Typography>
       <Button
         variant="contained"
         color="primary"
         sx={{ mt: 3 }}
-        onClick={() => router.push('/customize')}
+        onClick={() => router.push("/customize")}
       >
         Customize Again
       </Button>
