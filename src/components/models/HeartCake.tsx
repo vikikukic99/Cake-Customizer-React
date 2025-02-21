@@ -1,6 +1,6 @@
 "use client";
 
-import { MeshPhysicalMaterial } from "@react-three/drei";
+// import { MeshStandardMaterial } from "three";
 import { useRef } from "react";
 import { Mesh } from "three";
 
@@ -14,7 +14,7 @@ export default function HeartCake({ color = "#FFD700" }: HeartCakeProps) {
   return (
     <mesh ref={cakeRef}>
       <shapeGeometry />
-      <MeshPhysicalMaterial color={color} />
+      <meshStandardMaterial attach="material" color={color} />
     </mesh>
   );
 }

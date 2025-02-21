@@ -1,4 +1,4 @@
-name: CI Checks
+name: Lint and TypeScript Checks
 
 on:
   push:
@@ -9,8 +9,7 @@ on:
       - main
 
 jobs:
-  lint-and-typecheck:
-    name: Lint and TypeScript Checks
+  lint-and-ts-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Run ESLint
-        run: npm run lint --if-present
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx
 
       - name: Run TypeScript Check
-        run: npm run type-check
+        run: npx tsc --noEmit

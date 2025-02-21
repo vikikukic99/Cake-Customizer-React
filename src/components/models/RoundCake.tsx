@@ -1,6 +1,6 @@
 "use client";
 
-import { MeshPhysicalMaterial } from "@react-three/drei";
+// import { MeshStandardMaterial } from "three";
 import { useRef } from "react";
 import { Mesh } from "three";
 
@@ -14,7 +14,7 @@ export default function RoundCake({ color = "#FFD700" }: RoundCakeProps) {
   return (
     <mesh ref={cakeRef}>
       <cylinderGeometry args={[1, 1, 0.5, 32]} />
-      <MeshPhysicalMaterial color={color} />
+      <meshStandardMaterial attach="material" color={color} />
     </mesh>
   );
 }
