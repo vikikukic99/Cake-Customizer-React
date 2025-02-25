@@ -1,3 +1,4 @@
+/* eslint-env node */
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
@@ -7,10 +8,10 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
-    "prettier"
+    "prettier",
   ],
   rules: {
-    "@typescript-eslint/no-unused-vars": "warn",
-    "react/prop-types": "off"
-  }
+    "@typescript-eslint/no-unused-vars": "error",
+    "react/prop-types": "off",
+  },
 };
