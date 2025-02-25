@@ -1,9 +1,10 @@
-import Link from 'next/link';
-import { Button, Container, Typography } from '@mui/material';
+import React from "react";
+import Link from "next/link";
+import { Button, Container, Typography } from "@mui/material";
 
 export default function Home() {
   return (
-    <Container maxWidth="md" sx={{ textAlign: 'center', mt: 5 }}>
+    <Container maxWidth="md" sx={{ textAlign: "center", mt: 5 }}>
       <Typography variant="h3" gutterBottom>
         Welcome to Cake Customizer
       </Typography>

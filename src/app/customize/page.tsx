@@ -54,8 +54,11 @@ export default function CustomizePage() {
       <Typography variant="h4" textAlign="center" mt={5}>
         Customize Your Cake
       </Typography>
-      <CakeModel color={cake.color} shape={cake.shape} decoration={cake.decoration} />
-
+      <CakeModel size={cake.size} flavor={cake.flavor}
+  color={cake.color} 
+  shape={cake.shape} 
+  decoration={cake.decoration} 
+/>
       <Typography mt={3}>Select Cake Color:</Typography>
       <SketchPicker color={cake.color} onChange={handleColorChange} />
 

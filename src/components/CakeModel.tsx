@@ -5,7 +5,11 @@ import { Sphere, Cylinder, Torus } from "@react-three/drei";
 interface CakeProps {
   color: string;
   shape: string;
+  size: string;
+  flavor: string;
+  decoration: string; // Dodaj ovu liniju ako je nema
 }
+
 
 const CakeModel: React.FC<CakeProps> = ({ color, shape }) => {
   const renderCakeShape = () => {
